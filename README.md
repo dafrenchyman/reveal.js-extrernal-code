@@ -11,7 +11,7 @@ My simple workaround for testing it locally:
 
 ## Installation
 
-Copy the `externalcode.js' file into your reveal.js directory (recommended: `plugin/externalcode/externalcode.js`)
+Copy the `externalcode.js` file into your reveal.js directory (recommended: `plugin/externalcode/externalcode.js`)
 
 ## Adding a diagram to your presentation
 
