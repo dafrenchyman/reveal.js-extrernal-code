@@ -18,7 +18,7 @@
 const Externalcode = {
     id: "externalcode",
     init: (reveal) => {
-      function fetchSection(section) {
+      function fetchDataCodeSection(section) {
         url = section.getAttribute("data-code");
         return fetch(url)
           .then((response) => response.text())
@@ -26,14 +26,27 @@ const Externalcode = {
             section.textContent = data;
           });
       }
+
+      function fetchHtmlSection(section) {
+        url = section.getAttribute("html-insert");
+        return fetch(url)
+          .then((response) => response.text())
+          .then((data) => {
+            section.innerHTML = data;
+          });
+      }
   
-      var sections = document.querySelectorAll("[data-code]");
+      var sections = document.querySelectorAll("[data-code], [html-insert]");
       var promiseArray = new Array(sections.length);
   
       for (var i = 0, len = sections.length; i < len; i++) {
         section = sections[i];
-        if (section.getAttribute("data-code").length) {
-          promiseArray[i] = fetchSection(section);
+        if (section.getAttribute("data-code") != null) {
+          promiseArray[i] = fetchDataCodeSection(section);
+        }
+
+        if (section.getAttribute("html-insert") != null) {
+          promiseArray[i] = fetchHtmlSection(section);
         }
       }
       return Promise.all(promiseArray);
